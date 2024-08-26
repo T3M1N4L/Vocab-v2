@@ -1,0 +1,20 @@
+{
+    "lessons": [
+        {
+            "id": "1",
+            "name": "Lesson 1: Introduction to HTML",
+            "quizlet": "https://quizlet.com/example1",
+            "knowt": "https://knowt.com/example1",
+            "gimkit": "https://gimkit.com/example1",
+            "blooket": "https://blooket.com/example1"
+        },
+        {
+            "id": "2",
+            "name": "Lesson 2: CSS Basics",
+            "quizlet": "https://quizlet.com/example2",
+            "knowt": "https://knowt.com/example2",
+            "gimkit": "https://gimkit.com/example2",
+            "blooket": "https://blooket.com/example2"
+        }
+    ]
+}
