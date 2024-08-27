@@ -1,289 +1,322 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: black;
-    color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
 }
 
 .container {
-    text-align: center;
+  text-align: center;
 }
-
+p{
+    font-weight: bold;
+}
+z{
+    color:rgb(70, 70, 70);
+    font-size: small;
+    font: monospace;
+    font-weight: bold;
+}
+.loader-wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    transition: ease-out;
+    z-index: 9999999999999 !important;
+}
 h1 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: white;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: white;
 }
 
 /* Base styles - 6 columns */
 .lesson-buttons {
-    display: flex; /* Use flexbox for horizontal centering */
-    flex-wrap: wrap; /* Allow items to wrap to new lines */
-    justify-content: center; /* Center the items horizontally */
-    gap: 10px; /* Space between buttons */
-    font-weight: bolder !important;
-    max-width: 100%; 
-    padding-left: 20px;
-    padding-right: 20px;
+  display: flex; /* Use flexbox for horizontal centering */
+  flex-wrap: wrap; /* Allow items to wrap to new lines */
+  justify-content: center; /* Center the items horizontally */
+  gap: 10px; /* Space between buttons */
+  font-weight: bolder !important;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Medium screens - 2 columns */
 @media (max-width: 768px) {
-    .lesson-buttons {
-        flex-direction: row; /* Keep items in a row */
-        max-width: 100%; /* Ensure flex items fit within container */
-    }
+  .lesson-buttons {
+    flex-direction: row; /* Keep items in a row */
+    max-width: 100%; /* Ensure flex items fit within container */
+  }
 }
 
 /* Small screens - 1 column */
 @media (max-width: 480px) {
-    .lesson-buttons {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center items vertically */
-    }
+  .lesson-buttons {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items vertically */
+  }
 }
 
 .lesson-button {
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold !important;
-    max-width: 100%;
-    border: none;
-    background-color: #6600ffce;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold !important;
+  max-width: 100%;
+  border: none;
+  background-color: #6600ffce;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .lesson-button:hover {
-    background-color: #7f2aff;
+  background-color: #7f2aff;
 }
 
-
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    backdrop-filter: blur(0px); /* Start with no blur */
-    -webkit-backdrop-filter: blur(0px); /* Safari support */
-    z-index: 999; /* Ensure it's below the popup but above other content */
-    opacity: 0; /* Initially transparent */
-    transition: opacity 0.3s ease; /* Smooth transitions for opacity */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  backdrop-filter: blur(0px); /* Start with no blur */
+  -webkit-backdrop-filter: blur(0px); /* Safari support */
+  z-index: 999; /* Ensure it's below the popup but above other content */
+  opacity: 0; /* Initially transparent */
+  transition: opacity 0.3s ease; /* Smooth transitions for opacity */
 }
 
 /* Keyframes for blur effect */
 @keyframes backdropBlurIn {
-    from {
-        backdrop-filter: blur(0px);
-        -webkit-backdrop-filter: blur(0px);
-        opacity: 0;
-    }
-    to {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        opacity: 1;
-    }
+  from {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+  }
+  to {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 1;
+  }
 }
 
 @keyframes backdropBlurOut {
-    from {
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        opacity: 1;
-    }
-    to {
-        backdrop-filter: blur(0px);
-        -webkit-backdrop-filter: blur(0px);
-        opacity: 0;
-    }
+  from {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 1;
+  }
+  to {
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+  }
 }
 
 /* Apply the blur effect animation when the backdrop is visible */
 .backdrop.show {
-    animation: backdropBlurIn 0.3s forwards; /* Play the blur-in animation */
+  animation: backdropBlurIn 0.3s forwards; /* Play the blur-in animation */
 }
 
 /* Apply the unblur effect animation when the backdrop is hidden */
 .backdrop.hide {
-    animation: backdropBlurOut 0.3s forwards; /* Play the blur-out animation */
+  animation: backdropBlurOut 0.3s forwards; /* Play the blur-out animation */
 }
-
 
 /* Popup container */
 #popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the popup */
-    z-index: 1000; /* Ensure it's above the backdrop */
-    opacity: 0; /* Initially transparent */
-    transition: opacity 0.3s ease; /* Smooth fade-in/fade-out */
-    width: 70vw; /* Use viewport width to control size */
-    max-width: 70vw; /* Ensure the max width is appropriate */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the popup */
+  z-index: 1000; /* Ensure it's above the backdrop */
+  opacity: 0; /* Initially transparent */
+  transition: opacity 0.3s ease; /* Smooth fade-in/fade-out */
+  width: 70vw; /* Use viewport width to control size */
+  max-width: 70vw; /* Ensure the max width is appropriate */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 /* Keyframes for scaling up the popup */
 @keyframes popupShow {
-    0% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes popupHide {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0;
-    }
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
 }
 
 /* Show the popup with animation */
 #popup.show {
-    animation: popupShow 0.3s forwards; /* Play the show animation */
+  animation: popupShow 0.3s forwards; /* Play the show animation */
 }
 
 /* Hide the popup with animation */
 #popup.hide {
-    animation: popupHide 0.3s forwards; /* Play the hide animation */
+  animation: popupHide 0.3s forwards; /* Play the hide animation */
 }
 
 /* Popup content styling */
 .popup-content {
-    background-color: #000;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border: 2px solid #9f72ff; /* Optional border */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    transition: border-color 0.3s ease; /* Smooth transition for border color */
-    width: 100%; /* Ensure content width is responsive */
-    max-width: 100%; /* Ensure content width does not exceed the popup */
-    height: auto; /* Allow content to adjust height */
+  background-color: #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #9f72ff; /* Optional border */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
+  width: 100%; /* Ensure content width is responsive */
+  max-width: 100%; /* Ensure content width does not exceed the popup */
+  height: auto; /* Allow content to adjust height */
 }
 
 /* Optional: Change border color on hover */
 .popup-content:hover {
-    border-color: #6600ff; /* Darker border color on hover */
+  border-color: #6600ff; /* Darker border color on hover */
 }
 
 .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    transition: color 0.3s ease; /* Smooth transition for color */
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Smooth transition for color */
 }
 
 .close-btn:hover {
-    color: #ff4d4d;
+  color: #ff4d4d;
 }
 
 .popup-header {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    margin-bottom: 20px;
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 20px;
 }
 
 .popup-header img.popup-image {
-    width: 50px; /* Change this to the width you prefer */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 10px; /* Space between the image and the text */
+  width: 50px; /* Change this to the width you prefer */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Space between the image and the text */
 }
 
 .popup-header h2 {
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Adjust font size as needed */
-    color: #fff;
+  margin: 0; /* Remove default margin */
+  font-size: 24px; /* Adjust font size as needed */
+  color: #fff;
 }
 
 .popup-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .popup-button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 16px;
-    text-align: center;
-    font-weight: 600 !important;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600 !important;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .popup-button.quizlet {
-    background-color: #4255ff;
+  background-color: #4255ff;
 }
 
 .popup-button.quizlet:hover {
-    background-color: #423ed8;
+  background-color: #423ed8;
 }
 
 .popup-button.knowt {
-    background-color: #4ac3b5;
+  background-color: #4ac3b5;
 }
 
 .popup-button.knowt:hover {
-    background-color: #3fa99c;
+  background-color: #3fa99c;
 }
 
 .popup-button.gimkit {
-    background-color: #4a1f8f;
+  background-color: #4a1f8f;
 }
 
 .popup-button.gimkit:hover {
-    background-color: #39186f;
+  background-color: #39186f;
 }
 
 .popup-button.blooket {
-    background-color: #0bc2cf;
+  background-color: #0bc2cf;
 }
 
 .popup-button.blooket:hover {
-    background-color: #0ab3bf;
+  background-color: #0ab3bf;
 }
-#watermark
-{
- position:fixed;
- font-family: monospace !important;
- bottom:5px;
- right:5px;
- opacity:0.5;
- z-index:99;
- color:white;
+#watermark {
+  position: fixed;
+  font-family: monospace !important;
+  bottom: 5px;
+  right: 5px;
+  opacity: 0.5;
+  z-index: 99;
+  color: white;
 }
-.counter
-{
- position:fixed;
- font-family: monospace !important;
- bottom:5px;
- left:5px;
- opacity:0.5;
- z-index:99;
- color:white;
+.counter {
+  position: fixed;
+  font-family: monospace !important;
+  bottom: 5px;
+  left: 5px;
+  opacity: 0.5;
+  z-index: 99;
+  color: white;
 }
+       
+        /* Flexbox for the text-with-duck section */
+        .text-with-duck {
+          display: inline-flex; /* Use inline-flex to center align within a centered container */
+          align-items: center;
+          justify-content: center; /* Center content horizontally */
+          margin: 0 auto; /* Center align the block within the container */
+          gap: 15px; /* Space between the image and the text */
+      }
+
+      .text-with-duck img {
+          margin-right: 15px; /* Space between image and text (if needed) */
+      }
+      
+      .text-with-duck h1 {
+          margin: 0; /* Remove default margin for better alignment */
+      }

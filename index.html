@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" type="image/x-icon" target="_blank" href="./duckfavicon.png">
-    <div id="watermark">> ./ T3RM1N4L</div>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script> 
-    <script>
-        eruda.init({
-                  defaults: {
-                    displaySize: 30,
-                    transparency: 0.8,
-                    theme: "AMOLED"
-                  }
-                });
-        </script>
-        <img  height="10px" src="https://count.getloli.com/get/@T3RM1N4L" class="counter" />
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script src="./script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocab Study Dump</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-</head>
+
 <body>
+    <div class="loader-wrapper">
+        <div class="duck loader" name="report" style="background-color: black;margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;background-color: black;height: 100%;width: 100%;border: none;position: fixed;top: 0;right: 0;left: 0;bottom: 0;border: none;">
+            <center>
+                <img src="./ducky.gif" width="130vw" class="duck-loader" />
+                <p>Vocab Initializing...</p>
+                <z>Brought to you by T3RM1N4L</z>
+            </center>
+        </div>
+    </div>
     <div class="container">
-        <img src="https://raw.githubusercontent.com/T3M1N4L/T3M1N4L/main/images/XOsX.gif" width="130vw" alt="Lesson Image">
-        <h1>Everyday Words from Classic Origins</h1>
+        <div class="text-with-duck">
+            <img src="./ducky.gif" width="90" alt="Duck Image">
+            <div>
+                <h1 >Everyday Words from Classic Origins</h1>
+            </div>
+        </div>
         <div id="lessonButtons" class="lesson-buttons">
             <!-- Buttons will be dynamically loaded here -->
-        </div>   
-             
+        </div>
     </div>
+    <script>
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+    <div id="watermark">> ./ T3RM1N4L</div>
+    <img height="10px" src="https://count.getloli.com/get/@T3RM1N4L" class="counter" />
 </body>
+
 </html>
