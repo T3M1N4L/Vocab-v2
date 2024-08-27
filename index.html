@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script> 
-
     <script>
         eruda.init({
                   defaults: {
@@ -11,26 +9,22 @@
                     theme: "AMOLED"
                   }
                 });
-    </script>
+        </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Resources</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+</head>
+<body>
+    <div class="container">
+        <h1>Lessons</h1>
+        <div id="lessonButtons" class="lesson-buttons">
+            <!-- Buttons will be dynamically loaded here -->
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lesson Resources</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Lesson Resources</h1>
-            <div id="lessonButtons" class="lesson-buttons"></div>
-        </div>
-    
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span id="closePopup" class="close-btn">&times;</span>
-                <div id="popup-body"></div>
-            </div>
-        </div>
-    </body>
-    </html>
-    
+</body>
+</html>
