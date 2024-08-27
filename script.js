@@ -19,7 +19,7 @@ $(document).ready(function() {
             if (lesson) {
                 // Create popup HTML
                 const popupHtml = `
-                <div id="popup" class="popup">
+                <div id="popup" class="popup hide">
                     <div class="popup-content">
                         <span class="close-btn">&times;</span>
                         <div class="popup-header">
@@ -38,9 +38,9 @@ $(document).ready(function() {
                 // Append popup HTML and backdrop layer to body
                 $('body').append('<div class="backdrop"></div>'); // Add backdrop layer
                 $('body').append(popupHtml);
-                
+
                 // Show the popup and backdrop with animation
-                $('.backdrop').fadeTo(300, 1); // Ensure the backdrop fades in
+                $('.backdrop').removeClass('hide').addClass('show'); // Trigger blur-in animation
                 $('#popup').removeClass('hide').addClass('show'); // Trigger popup animation
             } else {
                 console.error("Lesson not found:", lessonId);
@@ -53,10 +53,9 @@ $(document).ready(function() {
     // Close popup
     $(document).on('click', '.close-btn', function() {
         $('#popup').removeClass('show').addClass('hide'); // Trigger popup hide animation
-        $('.backdrop').fadeTo(300, 0, function() {
-            $(this).remove(); // Remove backdrop layer after fade-out
-        });
+        $('.backdrop').removeClass('show').addClass('hide'); // Trigger blur-out animation
         setTimeout(function() {
+            $('.backdrop').remove(); // Remove backdrop layer after fade-out
             $('#popup').remove(); // Remove popup element after fade-out
         }, 300); // Match the animation duration
     });
@@ -65,10 +64,9 @@ $(document).ready(function() {
     $(window).on('click', function(event) {
         if ($(event.target).is('.backdrop')) {
             $('#popup').removeClass('show').addClass('hide'); // Trigger popup hide animation
-            $('.backdrop').fadeTo(300, 0, function() {
-                $(this).remove(); // Remove backdrop layer after fade-out
-            });
+            $('.backdrop').removeClass('show').addClass('hide'); // Trigger blur-out animation
             setTimeout(function() {
+                $('.backdrop').remove(); // Remove backdrop layer after fade-out
                 $('#popup').remove(); // Remove popup element after fade-out
             }, 300); // Match the animation duration
         }
