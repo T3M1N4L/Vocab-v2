@@ -6,8 +6,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    overflow: hidden; /* Prevent scrolling when popup is open */
+    background-color: black;
+    color: white;
+    overflow: hidden; /* Prevent scrollbars */
 }
 
 .container {
@@ -17,20 +18,37 @@ body {
 h1 {
     margin-bottom: 20px;
     font-size: 28px;
-    color: #333;
+    color: white;
 }
 
+/* Base styles - 3 columns */
 .lesson-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Three columns */
+    gap: 10px; /* Space between buttons */
+    max-width: 100%; /* Ensure grid fits within container */
+    justify-content: center; /* Center the grid */
+}
+
+/* Medium screens - 2 columns */
+@media (max-width: 768px) {
+    .lesson-buttons {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+}
+
+/* Small screens - 1 column */
+@media (max-width: 480px) {
+    .lesson-buttons {
+        grid-template-columns: 1fr; /* One column */
+    }
 }
 
 .lesson-button {
     padding: 12px 24px;
     font-size: 18px;
     border: none;
-    background-color: #007bff;
+    background-color: #6600ffce;
     color: #fff;
     cursor: pointer;
     border-radius: 8px;
@@ -38,76 +56,81 @@ h1 {
 }
 
 .lesson-button:hover {
-    background-color: #0056b3;
+    background-color: #7f2aff;
 }
 
-/* Define keyframe animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-}
-
-#popup {
+/* Backdrop layer to apply the blur effect */
+.backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: transparent; /* No overlay */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    z-index: 999; /* Ensure it's below the popup but above other content */
+    display: none; /* Initially hidden */
+    opacity: 0; /* Initially transparent */
+    transition: opacity 0.3s ease; /* Smooth fade-in/fade-out */
+}
+
+/* Popup container */
+#popup {
+    display: flex; /* Use flex to center content */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    display: flex; /* Flexbox to center content */
-    opacity: 0; /* Initially hidden */
-    transform: scale(0.8); /* Start slightly scaled down */
-    transition: opacity 0.4s ease, transform 0.4s ease; /* Smooth transition */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the popup */
+    z-index: 1000; /* Ensure it's above the backdrop */
+    opacity: 0; /* Initially transparent */
+    transform: scale(0.8) translate(-50%, -50%); /* Initially scaled down and centered */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    width: 70vw; /* Use viewport width to control size */
+    max-width: 70vw; /* Ensure the max width is appropriate */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
+/* Show the popup with animation */
 #popup.show {
-    opacity: 1; /* Fully visible */
-    transform: scale(1); /* Scale to original size */
-    animation: fadeIn 0.4s ease-out; /* Smooth fade-in animation */
+    opacity: 1; /* Fully opaque */
+    transform: scale(1) translate(-50%, -50%); /* Scale to original size and keep centered */
 }
 
+/* Hide the popup with animation */
 #popup.hide {
-    animation: fadeOut 0.4s ease-out; /* Smooth fade-out animation */
+    opacity: 0; /* Fade out */
+    transform: scale(0.8) translate(-50%, -50%); /* Scale down and keep centered */
 }
 
+/* Popup content styling */
 .popup-content {
-    background-color: #fff; /* White background for the popup content */
+    background-color: #000;
     border-radius: 10px;
     padding: 20px;
-    width: 90%;
-    max-width: 800px;
-    position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #9f72ff; /* Optional border */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+    width: 100%; /* Ensure content width is responsive */
+    max-width: 100%; /* Ensure content width does not exceed the popup */
+    height: auto; /* Allow content to adjust height */
 }
 
+/* Optional: Change border color on hover */
+.popup-content:hover {
+    border-color: #6600ff; /* Darker border color on hover */
+}
 
 .close-btn {
     position: absolute;
     top: 15px;
     right: 15px;
     font-size: 24px;
-    color: #333;
+    color: #fff;
     cursor: pointer;
+    transition: color 0.3s ease; /* Smooth transition for color */
 }
 
 .close-btn:hover {
@@ -115,13 +138,21 @@ h1 {
 }
 
 .popup-header {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
     margin-bottom: 20px;
 }
 
+.popup-header img.popup-image {
+    width: 50px; /* Change this to the width you prefer */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between the image and the text */
+}
+
 .popup-header h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Adjust font size as needed */
+    color: #fff;
 }
 
 .popup-body {

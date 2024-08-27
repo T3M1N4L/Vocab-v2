@@ -1,10 +1,9 @@
 $(document).ready(function() {
     // Load lesson buttons from JSON
     $.getJSON('lessons.json', function(data) {
-        console.log("Data loaded:", data); // Debugging line
         let lessonButtonsHtml = '';
         data.lessons.forEach(function(lesson) {
-            lessonButtonsHtml += '<button class="lesson-button" data-lesson-id="' + lesson.id + '">' + lesson.name + '</button>';
+            lessonButtonsHtml += `<button class="lesson-button" data-lesson-id="${lesson.id}">Lesson ${lesson.id}</button>`;
         });
         $('#lessonButtons').html(lessonButtonsHtml);
     }).fail(function() {
@@ -13,21 +12,19 @@ $(document).ready(function() {
 
     // Handle button click to open popup
     $(document).on('click', '.lesson-button', function() {
-        const lessonId = String($(this).data('lesson-id')); // Convert ID to string
-        console.log("Lesson button clicked. ID:", lessonId); // Debugging line
+        const lessonId = String($(this).data('lesson-id'));
 
         $.getJSON('lessons.json', function(data) {
-            console.log("Data on button click:", data); // Debugging line
-            const lesson = data.lessons.find(l => String(l.id) === lessonId); // Convert ID to string
-            console.log("Lesson found:", lesson); // Debugging line
+            const lesson = data.lessons.find(l => String(l.id) === lessonId);
             if (lesson) {
                 // Create popup HTML
-                let popupHtml = `
+                const popupHtml = `
                 <div id="popup" class="popup">
                     <div class="popup-content">
                         <span class="close-btn">&times;</span>
                         <div class="popup-header">
-                            <h2>${lesson.name}</h2>
+                            <img src="https://raw.githubusercontent.com/T3M1N4L/T3M1N4L/main/images/XOsX.gif" class="popup-image" alt="Lesson Image">
+                            <h2>Lesson ${lesson.id}</h2>
                         </div>
                         <div class="popup-body">
                             <a href="${lesson.quizlet}" class="popup-button quizlet" target="_blank">Quizlet</a>
@@ -38,11 +35,13 @@ $(document).ready(function() {
                     </div>
                 </div>`;
 
-                // Append popup HTML to body
+                // Append popup HTML and backdrop layer to body
+                $('body').append('<div class="backdrop"></div>'); // Add backdrop layer
                 $('body').append(popupHtml);
                 
-                // Show the popup with animation
-                $('#popup').removeClass('hide').addClass('show'); // Apply show class to start animation
+                // Show the popup and backdrop with animation
+                $('.backdrop').fadeTo(300, 1); // Ensure the backdrop fades in
+                $('#popup').removeClass('hide').addClass('show'); // Trigger popup animation
             } else {
                 console.error("Lesson not found:", lessonId);
             }
@@ -53,21 +52,25 @@ $(document).ready(function() {
 
     // Close popup
     $(document).on('click', '.close-btn', function() {
-        $('#popup').removeClass('show').addClass('hide'); // Apply hide class to start animation
-        // Remove the popup element after fading out
+        $('#popup').removeClass('show').addClass('hide'); // Trigger popup hide animation
+        $('.backdrop').fadeTo(300, 0, function() {
+            $(this).remove(); // Remove backdrop layer after fade-out
+        });
         setTimeout(function() {
-            $('#popup').remove();
-        }, 400); // Match the animation duration
+            $('#popup').remove(); // Remove popup element after fade-out
+        }, 300); // Match the animation duration
     });
 
     // Close popup when clicking outside of it
     $(window).on('click', function(event) {
-        if ($(event.target).is('#popup')) {
-            $('#popup').removeClass('show').addClass('hide'); // Apply hide class to start animation
-            // Remove the popup element after fading out
+        if ($(event.target).is('.backdrop')) {
+            $('#popup').removeClass('show').addClass('hide'); // Trigger popup hide animation
+            $('.backdrop').fadeTo(300, 0, function() {
+                $(this).remove(); // Remove backdrop layer after fade-out
+            });
             setTimeout(function() {
-                $('#popup').remove();
-            }, 400); // Match the animation duration
+                $('#popup').remove(); // Remove popup element after fade-out
+            }, 300); // Match the animation duration
         }
     });
 });
