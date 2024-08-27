@@ -27,7 +27,7 @@ h1 {
     justify-content: center; /* Center the items horizontally */
     gap: 10px; /* Space between buttons */
     font-weight: bolder !important;
-    max-width: 100%; /* Ensure grid fits within container */
+    max-width: 100%; 
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -266,4 +266,24 @@ h1 {
 
 .popup-button.blooket:hover {
     background-color: #0ab3bf;
+}
+#watermark
+{
+ position:fixed;
+ font-family: monospace !important;
+ bottom:5px;
+ right:5px;
+ opacity:0.5;
+ z-index:99;
+ color:white;
+}
+.counter
+{
+ position:fixed;
+ font-family: monospace !important;
+ bottom:5px;
+ left:5px;
+ opacity:0.5;
+ z-index:99;
+ color:white;
 }
