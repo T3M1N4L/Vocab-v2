@@ -8,7 +8,6 @@ body {
     height: 100vh;
     background-color: black;
     color: white;
-    overflow: hidden; /* Prevent scrollbars */
 }
 
 .container {
@@ -23,30 +22,37 @@ h1 {
 
 /* Base styles - 6 columns */
 .lesson-buttons {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); /* Six columns */
+    display: flex; /* Use flexbox for horizontal centering */
+    flex-wrap: wrap; /* Allow items to wrap to new lines */
+    justify-content: center; /* Center the items horizontally */
     gap: 10px; /* Space between buttons */
+    font-weight: bolder !important;
     max-width: 100%; /* Ensure grid fits within container */
-    justify-content: center; /* Center the grid */
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 /* Medium screens - 2 columns */
 @media (max-width: 768px) {
     .lesson-buttons {
-        grid-template-columns: repeat(2, 1fr); /* Two columns */
+        flex-direction: row; /* Keep items in a row */
+        max-width: 100%; /* Ensure flex items fit within container */
     }
 }
 
 /* Small screens - 1 column */
 @media (max-width: 480px) {
     .lesson-buttons {
-        grid-template-columns: 1fr; /* One column */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items vertically */
     }
 }
 
 .lesson-button {
     padding: 12px 24px;
     font-size: 18px;
+    font-weight: bold !important;
+    max-width: 100%;
     border: none;
     background-color: #6600ffce;
     color: #fff;
@@ -221,6 +227,7 @@ h1 {
     padding: 12px 24px;
     font-size: 16px;
     text-align: center;
+    font-weight: 600 !important;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -230,33 +237,33 @@ h1 {
 }
 
 .popup-button.quizlet {
-    background-color: #f15a29;
+    background-color: #4255ff;
 }
 
 .popup-button.quizlet:hover {
-    background-color: #d14b1a;
+    background-color: #423ed8;
 }
 
 .popup-button.knowt {
-    background-color: #5d6d7e;
+    background-color: #4ac3b5;
 }
 
 .popup-button.knowt:hover {
-    background-color: #4a5d6d;
+    background-color: #3fa99c;
 }
 
 .popup-button.gimkit {
-    background-color: #c70039;
+    background-color: #4a1f8f;
 }
 
 .popup-button.gimkit:hover {
-    background-color: #b50033;
+    background-color: #39186f;
 }
 
 .popup-button.blooket {
-    background-color: #009688;
+    background-color: #0bc2cf;
 }
 
 .popup-button.blooket:hover {
-    background-color: #00796b;
+    background-color: #0ab3bf;
 }
