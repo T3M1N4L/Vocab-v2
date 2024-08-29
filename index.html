@@ -5,6 +5,7 @@
     <link rel="icon" type="image/x-icon" target="_blank" href="./duckfavicon.png">
     <script src="./jquery-3.7.1.min.js"></script>
     <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocab Study Dump</title>
@@ -25,7 +26,7 @@
         <div class="text-with-duck">
             <img src="./ducky.gif" width="90" alt="Duck Image">
             <div>
-                <h1 >Everyday Words from Classic Origins</h1>
+                <h1 class="typer">Everyday Words from Classic Origins</h1>
             </div>
         </div>
         <div id="lessonButtons" class="lesson-buttons">
@@ -35,7 +36,15 @@
     <script>
         $(window).on("load", function () {
             $(".loader-wrapper").fadeOut("slow");
-        });
+        }); 
+    </script>
+    <script>
+            var typed = new Typed(".typer",{
+      strings : ["Everyday Words from Classic Origins"],
+      typeSpeed : 100,
+      backSpeed : 100,
+      looped : true
+    })
     </script>
     <div id="watermark">> ./ T3RM1N4L</div>
     <img height="10px" src="https://count.getloli.com/get/@T3RM1N4L" class="counter" />
