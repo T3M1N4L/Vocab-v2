@@ -320,3 +320,26 @@ h1 {
       .text-with-duck h1 {
           margin: 0; /* Remove default margin for better alignment */
       }
+
+      .typer {
+        width: 35ch;
+        animation: typing 6s steps(35), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        font-family: monospace;
+        font-size: 2em;
+      }
+      
+      @keyframes typing {
+        from {
+          width: 0
+        }
+      }
+          
+      @keyframes blink {
+        50% {
+          border-color: transparent
+        }
+      }
+      
